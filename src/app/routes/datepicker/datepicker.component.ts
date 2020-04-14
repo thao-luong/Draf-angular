@@ -15,7 +15,7 @@ import  MonthPickerComponentCSS  from '!!raw-loader!../../components/date-picker
   styleUrls: ['./datepicker.component.css']
 })
 export class DatepickerComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
   datepickerComponentArray = [
     {

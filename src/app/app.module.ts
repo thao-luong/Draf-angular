@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule,MatDialogConfig } from '@angular/material/dialog';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -125,7 +126,7 @@ import { ExportChartComponent } from './routes/export-chart/export-chart.compone
 import { ExportHeadlineComponent } from './routes/export-headline/export-headline.component';
 import { ExportPivotTableComponent } from './routes/export-pivot-table/export-pivot-table.component';
 import { ExportTableComponent } from './routes/export-table/export-table.component';
-import { ExportVisualizationComponent } from './routes/export-visualization/export-visualization.component'
+import { ExportVisualizationComponent } from './routes/export-visualization/export-visualization.component';
 import { ResponsiveChartComponent } from './routes/responsive-chart/responsive-chart.component';
 import { SaveAsDashboardComponent } from './components/save-as-dashboard/save-as-dashboard.component';
 import { SaveAsDashboardComponentComponent } from './routes/save-as-dashboard-component/save-as-dashboard-component.component';
@@ -139,7 +140,8 @@ import { DualAxisBarChartComponent } from './components/dual-axis-bar-chart/dual
 import { ColumnChartConfigComponent } from './components/column-chart-config/column-chart-config.component';
 import { PieChartWithColorMappingComponent } from './components/pie-chart-with-color-mapping/pie-chart-with-color-mapping.component';
 import { ChartConfigComponentsComponent } from './routes/chart-config-components/chart-config-components.component';
-import { ExampleWithSourceComponent } from './components/utils/example-with-source/example-with-source.component'
+import { ExampleWithSourceComponent } from './components/utils/example-with-source/example-with-source.component';
+import { DrillingPopUpComponent } from './components/drilling-pop-up/drilling-pop-up.component'
 
 @NgModule({
     imports: [
@@ -155,6 +157,7 @@ import { ExampleWithSourceComponent } from './components/utils/example-with-sour
         HttpClientModule,
         AppRouting,
         MatTabsModule,
+        MatDialogModule,
         RouterModule.forRoot([{
             path: '', redirectTo: '/basic-components', pathMatch: 'full'
         }])
@@ -281,7 +284,8 @@ import { ExampleWithSourceComponent } from './components/utils/example-with-sour
         ColumnChartConfigComponent,
         PieChartWithColorMappingComponent,
         ChartConfigComponentsComponent,
-        ExampleWithSourceComponent
+        ExampleWithSourceComponent,
+        DrillingPopUpComponent
         
     ],
     providers: [
@@ -380,7 +384,8 @@ import { ExampleWithSourceComponent } from './components/utils/example-with-sour
         VisualizationScatterPlotByUriComponent,
         VisualizationPieChartByUriComponent,
         VisualizationDonutChartByUriComponent,
-        VisualizationBulletChartByUriComponent
+        VisualizationBulletChartByUriComponent,
+        DrillingPopUpComponent
     ]
 })
 

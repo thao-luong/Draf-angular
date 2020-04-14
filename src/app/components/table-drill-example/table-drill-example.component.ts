@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as uuid from 'uuid';
 import * as invariant from 'invariant';
-import { Component, Input, OnInit, OnDestroy, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges, AfterViewInit,Inject } from '@angular/core';
 import { Table, Model, HeaderPredicateFactory } from '@gooddata/react-components';
 import '@gooddata/react-components/styles/css/main.css';
 import {
@@ -15,6 +15,8 @@ import {
   franchiseFeesIdentifierOngoingRoyalty,
   menuCategoryAttributeDFIdentifier,
 } from '../../../utils/fixtures.js';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { DrillingPopUpComponent } from '../drilling-pop-up/drilling-pop-up.component.js';
 
 interface TableDrillExampleBucketProps {
   projectId: any;
@@ -35,9 +37,11 @@ interface TableDrillExampleProps {
   template: '<div class="table-drill-example" style="height:500px" [id]="rootDomID"></div>',
 })
 export class TableDrillExampleComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+  constructor(public dialog: MatDialog) {}
+  // public dialog: MatDialog
   @Input() filters: any[];
   @Input() sortBy: any[];
-
+  
   xMeasures = [
     Model.measure(franchiseFeesIdentifier)
       .format("#,##0")
@@ -82,12 +86,20 @@ export class TableDrillExampleComponent implements OnInit, OnDestroy, OnChanges,
   ];
 
   xSortBy = [Model.attributeSortItem("menu", "asc")]
+
   onDrill = drillEvent => {
-    console.log(
-      "onFiredDrillEvent",
-      drillEvent,
-      JSON.stringify(drillEvent.drillContext.intersection, null, 2),
-    );
+    const dialogRef = this.dialog.open(DrillingPopUpComponent, {
+      width: '250px',
+      data: {
+        projectId : projectId,
+      }
+    });
+
+    // console.log(
+    //   "onFiredDrillEvent",
+    //   drillEvent,
+    //   JSON.stringify(drillEvent.drillContext.intersection, null, 2),
+    // );
     return true;
   };
   renderDrillValue() {
@@ -117,7 +129,7 @@ export class TableDrillExampleComponent implements OnInit, OnDestroy, OnChanges,
       filters: this.filters,
       sortBy: this.xSortBy,
       drillableItems: this.drillableItems,
-      onFiredDrillEvent: this.onDrill
+      onFiredDrillEvent: this.onDrill,
     };
   }
 

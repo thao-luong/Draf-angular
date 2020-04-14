@@ -15,9 +15,8 @@ export class AppComponent {
     isLogged: boolean;
     mainMenuItems;
     activeMenuItem$: Observable<MenuItem>;
-
     constructor(
-        private router: Router
+        private router: Router,
     ) {
         sdk.user.isLoggedInProject(`${projectId}`).then((isOk) => {
             if (isOk) {
@@ -25,7 +24,6 @@ export class AppComponent {
             }
         });
     }
-
     logout() {
         sdk.user.logout();
         this.router.navigate(['/login']);
